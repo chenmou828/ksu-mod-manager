@@ -12,9 +12,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Unzip source code
-        run: |
-          unzip KernelSU-Next-3.4.2_new.zip -d ./src
-          cd src
+        run: unzip KernelSU-Next-3.4.2_new.zip -d ./src
 
       - name: Set up JDK17
         uses: actions/setup-java@v4
@@ -24,9 +22,9 @@ jobs:
 
       - name: Build Release APK
         run: |
-          cd src/manager
-          chmod +x gradlew
-          ./gradlew assembleRelease
+          cd src
+          chmod +x manager/gradlew
+          ./manager/gradlew assembleRelease
 
       - name: Upload built APK
         uses: actions/upload-artifact@v4
