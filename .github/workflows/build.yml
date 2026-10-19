@@ -11,18 +11,23 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up JDK17
+      - name: Unzip source
+        run: |
+          ls
+          unzip KernelSU-Next-3.4.2.zip
+
+      - name: Setup JDK17
         uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Build Release APK
+      - name: Build APK
         run: |
           chmod +x manager/gradlew
           ./manager/gradlew assembleRelease
 
-      - name: Upload built APK
+      - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
           name: Modified-KSU-APK
